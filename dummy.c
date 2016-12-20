@@ -11,14 +11,14 @@ G_DEFINE_TYPE (GlsDummy, gls_dummy, G_TYPE_OBJECT)
 static void
 gls_dummy_class_object_dispose(GObject *self)
 {
-	g_print("dummy#%d::dispose\n", GLS_DUMMY(self)->id);
+	g_print("dummy#%d::dispose\n", gls_dummy_hash((gconstpointer)self));
 	G_OBJECT_CLASS( gls_dummy_parent_class )->dispose( self );
 }
 
 static void
 gls_dummy_class_object_finalize(GObject *self)
 {
-	g_print("dummy#%d::finalize\n", GLS_DUMMY(self)->id);
+	g_print("dummy#%d::finalize\n", gls_dummy_hash((gconstpointer)self));
 	G_OBJECT_CLASS( gls_dummy_parent_class )->finalize( self );
 }
 
@@ -37,7 +37,8 @@ gls_dummy_init (GlsDummy *object)
 {
 	gls_dummy_counter++;
 	object->id = gls_dummy_counter;
-	g_print("dummy#%d::init\n", gls_dummy_counter);
+
+	g_print("dummy#%d::init\n", gls_dummy_hash((gconstpointer)self));
 }
 
 GlsDummy *
