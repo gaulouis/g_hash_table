@@ -2,7 +2,7 @@
 #ifndef __GLS_DUMMY_H__
 #define __GLS_DUMMY_H__
 
-#include <gtk/gtk.h>
+#include <glib-object.h>
 
 
 G_BEGIN_DECLS

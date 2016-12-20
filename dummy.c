@@ -13,9 +13,6 @@ gls_dummy_class_init(GlsDummyClass *klass)
 	GObjectClass *gobject_class;
 
 	gobject_class = (GObjectClass *) klass;
-
-
-	gls_dummy_parent_class = g_type_class_peek_parent (klass);
 }
 
 static void
