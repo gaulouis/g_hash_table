@@ -2,6 +2,7 @@
 
 
 $ ./main
+```
 dummy::init(#1)
 dummy::init(#2)
 dummy::init(#3)
@@ -25,4 +26,5 @@ dummy::dispose(#4)
 	dummy::finalize(#4)
 dummy::dispose(#2)
 	dummy::finalize(#2)
+```
 
