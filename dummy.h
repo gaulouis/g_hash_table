@@ -33,6 +33,7 @@ struct _GlsDummyClass {
 GType     gls_dummy_get_type();
 GlsDummy *gls_dummy_new();
 guint     gls_dummy_hash(gconstpointer key);
+gboolean  gls_dummy_equal(gconstpointer a, gconstpointer b);
 
 G_END_DECLS
 

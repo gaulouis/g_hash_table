@@ -55,3 +55,10 @@ gls_dummy_hash(gconstpointer key)
 	return dummy->id;
 }
 
+gboolean
+gls_dummy_equal(gconstpointer a, gconstpointer b)
+{
+	g_print("dummy::equal(#%d, #%d)\n", GLS_DUMMY(a)->id, GLS_DUMMY(b)->id);
+	return GLS_DUMMY(a)->id == GLS_DUMMY(b)->id;
+}
+
