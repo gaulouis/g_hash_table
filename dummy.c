@@ -38,7 +38,7 @@ gls_dummy_init (GlsDummy *object)
 	gls_dummy_counter++;
 	object->id = gls_dummy_counter;
 
-	g_print("dummy#%d::init\n", gls_dummy_hash((gconstpointer)self);
+	g_print("dummy#%d::init\n", gls_dummy_hash((gconstpointer)object));
 }
 
 GlsDummy *
@@ -48,9 +48,9 @@ gls_dummy_new (void)
 }
 
 guint
-gls_dummy_hash(gconstpointer *self)
+gls_dummy_hash(gconstpointer key)
 {
-	GlsDummy * dummy = GLS_DUMMY(self);
+	GlsDummy * dummy = GLS_DUMMY(key);
 	return dummy->id;
 }
 
