@@ -18,15 +18,21 @@ typedef struct _GlsDummy GlsDummy;
 typedef struct _GlsDummyClass GlsDummyClass;
 
 struct _GlsDummy {
+	/*< private >*/
 	GObject parent_instance;
+
+	/*< public >*/
+	gint id;
 };
 
 struct _GlsDummyClass {
+	/*< private >*/
 	GObjectClass parent_class;
 };
 
-GType gls_dummy_get_type();
+GType     gls_dummy_get_type();
 GlsDummy *gls_dummy_new();
+guint     gls_dummy_hash(gconstpointer *self);
 
 G_END_DECLS
 
