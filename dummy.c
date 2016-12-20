@@ -11,14 +11,14 @@ G_DEFINE_TYPE (GlsDummy, gls_dummy, G_TYPE_OBJECT)
 static void
 gls_dummy_class_object_dispose(GObject *self)
 {
-	g_print("dummy#%d::dispose\n", GLS_DUMMY(self)->id);
+	g_print("dummy::dispose(#%d)\n", GLS_DUMMY(self)->id);
 	G_OBJECT_CLASS( gls_dummy_parent_class )->dispose( self );
 }
 
 static void
 gls_dummy_class_object_finalize(GObject *self)
 {
-	g_print("dummy#%d::finalize\n", GLS_DUMMY(self)->id);
+	g_print("\tdummy::finalize(#%d)\n", GLS_DUMMY(self)->id);
 	G_OBJECT_CLASS( gls_dummy_parent_class )->finalize( self );
 }
 
@@ -35,30 +35,39 @@ gls_dummy_class_init(GlsDummyClass *klass)
 static void
 gls_dummy_init (GlsDummy *object)
 {
-	gls_dummy_counter++;
-	object->id = gls_dummy_counter;
-
-	g_print("dummy#%d::init\n", object->id);
+	object->id = ++gls_dummy_counter;
+	g_print("dummy::init(#%d)\n", object->id);
 }
 
-GlsDummy *
+GlsDummy*
 gls_dummy_new (void)
 {
-	return g_object_new (gls_dummy_get_type (), NULL);
+	GlsDummy* dummy = g_object_new (gls_dummy_get_type (), NULL);
+	dummy->hash = dummy->id * 10;
+	return dummy;
+}
+
+GlsDummy*
+gls_dummy_new_from_hash(guint hash)
+{
+	GlsDummy* dummy = g_object_new (gls_dummy_get_type (), NULL);
+	dummy->hash = hash;
+	return dummy;
 }
 
 guint
 gls_dummy_hash(gconstpointer key)
 {
 	GlsDummy * dummy = GLS_DUMMY(key);
-	g_print("dummy#%d::hash\n", dummy->id);
-	return dummy->id;
+	g_print("\tdummy::hash(#%d):%d\n", dummy->id, dummy->hash);
+	return dummy->hash;
 }
 
 gboolean
 gls_dummy_equal(gconstpointer a, gconstpointer b)
 {
-	g_print("dummy::equal(#%d, #%d)\n", GLS_DUMMY(a)->id, GLS_DUMMY(b)->id);
-	return GLS_DUMMY(a)->id == GLS_DUMMY(b)->id;
+	gboolean equal = GLS_DUMMY(a)->hash == GLS_DUMMY(b)->hash;
+	g_print("\tdummy::equal(#%d, #%d):%s\n", GLS_DUMMY(a)->id, GLS_DUMMY(b)->id, equal ? "true": "false");
+	return equal;
 }
 

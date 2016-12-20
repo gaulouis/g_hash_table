@@ -20,6 +20,7 @@ typedef struct _GlsDummyClass GlsDummyClass;
 struct _GlsDummy {
 	/*< private >*/
 	GObject parent_instance;
+	guint hash;
 
 	/*< public >*/
 	gint id;
@@ -32,6 +33,8 @@ struct _GlsDummyClass {
 
 GType     gls_dummy_get_type();
 GlsDummy *gls_dummy_new();
+GlsDummy *gls_dummy_new_from_hash(guint hash);
+
 guint     gls_dummy_hash(gconstpointer key);
 gboolean  gls_dummy_equal(gconstpointer a, gconstpointer b);
 
