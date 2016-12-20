@@ -1,2 +1,2 @@
 all: main.c
-	gcc `pkg-config --cflags --libs gobject-2.0` main.c -o main
+	gcc main.c -o main `pkg-config --cflags --libs gobject-2.0`
