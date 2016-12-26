@@ -28,3 +28,4 @@ dummy::dispose(#2)
 	dummy::finalize(#2)
 ```
 
+# Example of tree of GObject
